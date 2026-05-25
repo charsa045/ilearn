@@ -21,6 +21,18 @@ export default async function Page({
 }) {
   try {
     // 🔥 Obtener ID de clase
+
+    type RegistroAsistencia = {
+  alumnoId: string;
+  presente: boolean;
+};
+
+type Asistencia = {
+  id: string;
+  fecha: string;
+  alumnos: RegistroAsistencia[];
+};
+    
     const { id: claseId } = await params;
 
     const clase = await getClaseById(claseId);
@@ -44,7 +56,7 @@ export default async function Page({
     const alumnos = await getAlumnosPorClase(claseId);
 
     // 🔥 Obtener asistencia de HOY
-    const asistenciaHoy = await getAsistenciaHoy(claseId);
+    const asistenciaHoy = await getAsistenciaHoy(claseId) as Asistencia | null;
 
     // 🔥 Obtener historial
     const asistencias = await getAsistenciasByClase(claseId);
