@@ -6,7 +6,7 @@ import {
 } from "@/lib/docentes/docente.repository";
 
 import { adminAuth } from "@/lib/firebase-admin";
-import { GradoEstudios } from "@/lib/docentes/docente.types"; // 👈 ajusta ruta si es necesario
+import { GradoEstudios } from "@/lib/docentes/docente.type"; // 👈 ajusta ruta si es necesario
 
 // 🔹 GET
 export async function GET() {
