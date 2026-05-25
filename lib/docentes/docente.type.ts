@@ -24,7 +24,7 @@ export interface CreateDocenteInput {
   uid: string;
   nombre?: string;
 
-  imageUrl?: string; // ✅ AGREGADO
+  imageUrl?: string;
 
   grado: GradoEstudios;
   titulo: string;
