@@ -18,21 +18,23 @@ function mapDocToDocente(
   }
 
   return {
-    id: doc.id,
-    uid: data.uid,
+  id: doc.id,
+  uid: data.uid,
 
-    nombre: data.nombre ?? "Sin nombre",
-    email: data.email ?? "Sin correo",
+  nombre: data.nombre ?? "Sin nombre",
+  email: data.email ?? "Sin correo",
 
-    grado: data.grado,
-    titulo: data.titulo,
-    especialidad: data.especialidad,
-    institucion: data.institucion,
+  imageUrl: data.imageUrl ?? "",
 
-    activo: data.activo ?? true,
-    createdAt: data.createdAt?.toDate?.() ?? new Date(),
-    updatedAt: data.updatedAt?.toDate?.() ?? new Date(),
-  };
+  grado: data.grado,
+  titulo: data.titulo,
+  especialidad: data.especialidad,
+  institucion: data.institucion,
+
+  activo: data.activo ?? true,
+  createdAt: data.createdAt?.toDate?.() ?? new Date(),
+  updatedAt: data.updatedAt?.toDate?.() ?? new Date(),
+};
 }
 
 export async function createDocente(
