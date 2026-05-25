@@ -8,8 +8,9 @@ export interface Docente {
   uid: string;
   nombre: string;
   email: string;
-  imageUrl?: string;
-  imagePublicId?: string;
+
+  imageUrl?: string; // ✅ AGREGADO
+
   grado: GradoEstudios;
   titulo: string;
   especialidad: string;
@@ -22,8 +23,9 @@ export interface Docente {
 export interface CreateDocenteInput {
   uid: string;
   nombre?: string;
-  imageUrl?: string;
-  imagePublicId?: string;
+
+  imageUrl?: string; // ✅ AGREGADO
+
   grado: GradoEstudios;
   titulo: string;
   especialidad: string;
@@ -32,6 +34,9 @@ export interface CreateDocenteInput {
 
 export interface UpdateDocenteInput {
   nombre?: string;
+
+  imageUrl?: string; // ✅ AGREGADO
+
   grado?: GradoEstudios;
   titulo?: string;
   especialidad?: string;
