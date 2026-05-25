@@ -55,23 +55,26 @@ export async function createDocente(
   const authUser = await adminAuth.getUser(input.uid);
 
   const docenteData = {
-    uid: input.uid,
-    nombre:
-      authUser.displayName ||
-      input.nombre ||
-      "Sin nombre",
+  uid: input.uid,
 
-    email: authUser.email || "Sin correo",
+  nombre:
+    authUser.displayName ||
+    input.nombre ||
+    "Sin nombre",
 
-    grado: input.grado,
-    titulo: input.titulo,
-    especialidad: input.especialidad,
-    institucion: input.institucion,
+  email: authUser.email || "Sin correo",
 
-    activo: true,
-    createdAt: now,
-    updatedAt: now,
-  };
+  imageUrl: input.imageUrl || "",
+
+  grado: input.grado,
+  titulo: input.titulo,
+  especialidad: input.especialidad,
+  institucion: input.institucion,
+
+  activo: true,
+  createdAt: now,
+  updatedAt: now,
+};
 
   await docRef.set(docenteData);
 
