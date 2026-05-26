@@ -62,8 +62,6 @@ export async function createDocente(
     input.nombre ||
     "Sin nombre",
 
-  email: authUser.email || "Sin correo",
-
   imageUrl: input.imageUrl || "",
 
   grado: input.grado,
