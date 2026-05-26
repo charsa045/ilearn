@@ -199,8 +199,6 @@ export default function LoginClient() {
         overflow-hidden
       "
     >
-
-      {/* Fondo */}
       <div
         className="
           absolute

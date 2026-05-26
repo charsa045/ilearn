@@ -59,8 +59,6 @@ export default function NuevoProductoPage() {
 
   return (
     <main className="relative min-h-screen flex items-center justify-center">
-
-      {/* Fondo con imagen */}
       <div className="absolute inset-0">
         <img
           src="https://www.meganoticias.mx/uploads/noticias/estudiantes-del-tecnologico-de-toluca-colocan-tendedero-por-acoso-131058.jpg"

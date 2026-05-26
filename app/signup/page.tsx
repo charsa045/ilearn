@@ -46,9 +46,6 @@ export default function SignUp() {
 
   const router = useRouter();
 
-  /**
-   * 🔥 Login sesión backend
-   */
   async function sessionLogin() {
 
     const idToken =
@@ -75,9 +72,6 @@ export default function SignUp() {
     });
   }
 
-  /**
-   * 🔥 Upload imagen a Cloudinary
-   */
   async function uploadImage() {
 
     if (!imageFile) {
@@ -120,9 +114,6 @@ export default function SignUp() {
     };
   }
 
-  /**
-   * 🔥 Submit
-   */
   async function onSubmit(
     e: React.FormEvent
   ) {
@@ -159,16 +150,10 @@ export default function SignUp() {
         true
       );
 
-      /**
-       * 🔥 Subir imagen
-       */
       const {
         imageUrl,
       } = await uploadImage();
 
-      /**
-       * 🔥 Crear usuario Firebase
-       */
       const cred =
         await createUserWithEmailAndPassword(
           auth,
@@ -179,9 +164,6 @@ export default function SignUp() {
       const user =
         cred.user;
 
-      /**
-       * 🔥 Actualizar perfil Firebase
-       */
       await updateProfile(user, {
 
         displayName: name,
@@ -189,9 +171,6 @@ export default function SignUp() {
         photoURL: imageUrl,
       });
 
-      /**
-       * 🔥 Crear usuario DB
-       */
       const res =
         await fetch(
           "/api/usuarios",
@@ -226,9 +205,6 @@ export default function SignUp() {
         );
       }
 
-      /**
-       * 🔥 Login backend
-       */
       await sessionLogin();
 
       router.push(
@@ -252,9 +228,6 @@ export default function SignUp() {
     }
   }
 
-  /**
-   * 🔥 Seleccionar imagen
-   */
   const handleImageChange = (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
@@ -325,7 +298,7 @@ export default function SignUp() {
           "
         >
 
-          {/* 🔹 Título */}
+          {/* Título */}
           <div className="text-center space-y-1">
 
             <h2
@@ -348,7 +321,7 @@ export default function SignUp() {
             </p>
           </div>
 
-          {/* 🔥 FOTO */}
+          {/* FOTO */}
           <div className="flex flex-col items-center space-y-3">
 
             <label

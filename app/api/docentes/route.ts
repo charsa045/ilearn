@@ -8,7 +8,6 @@ import {
 import { adminAuth } from "@/lib/firebase-admin";
 import { GradoEstudios } from "@/lib/docentes/docente.type";
 
-// 🔹 GET
 export async function GET() {
   try {
     const docentes = await getDocentes();
@@ -30,7 +29,6 @@ export async function GET() {
   }
 }
 
-// 🔹 POST
 export async function POST(req: NextRequest) {
   try {
     const body = (await req.json()) as {
@@ -57,7 +55,6 @@ export async function POST(req: NextRequest) {
 
     let finalUid = uid;
 
-    // 🔥 Si no viene UID, el admin está creando un usuario nuevo en Firebase Auth
     if (!finalUid) {
       if (!email || !password) {
         return NextResponse.json(

@@ -57,7 +57,6 @@ useEffect(() => {
 
   loadUser();
 
-  // 🔥 Escuchar actualización foto
   const refreshListener =
     () => loadUser();
 
@@ -76,7 +75,6 @@ useEffect(() => {
 
 }, []);
 
-  // 🔥 Logout
   const handleLogout = async () => {
 
     await fetch(
@@ -112,7 +110,7 @@ useEffect(() => {
       "
     >
 
-      {/* 🔷 LOGO */}
+      {/* LOGO */}
       <Link
         href="/"
         className="
@@ -139,7 +137,7 @@ useEffect(() => {
         Learn
       </Link>
 
-      {/* 🔷 NAV */}
+      {/* NAV */}
       <nav
         className="
           ml-auto
@@ -163,7 +161,7 @@ useEffect(() => {
           Inicio
         </Link>
 
-        {/* 🔥 SIN SESIÓN */}
+        {/* SIN SESIÓN */}
         {!loading && !user && (
           <>
 
@@ -197,7 +195,7 @@ useEffect(() => {
           </>
         )}
 
-        {/* 🔥 CON SESIÓN */}
+        {/* CON SESIÓN */}
         {!loading && user && (
 
           <div
@@ -208,7 +206,7 @@ useEffect(() => {
             "
           >
 
-            {/* 🔥 AVATAR */}
+            {/* AVATAR USUARIO */}
             {user.imageUrl ? (
 
               <img
@@ -248,7 +246,7 @@ useEffect(() => {
               </div>
             )}
 
-            {/* 🔥 NOMBRE */}
+            {/* NOMBRE */}
             <span
               className="
                 hidden
@@ -259,7 +257,7 @@ useEffect(() => {
               {user.name || user.email}
             </span>
 
-            {/* 🔥 PORTAL */}
+            {/* ACCESO AL PORTAL */}
             <Link
               href="/dashboard"
               className="

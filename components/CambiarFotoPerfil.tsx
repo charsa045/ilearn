@@ -137,7 +137,6 @@ export default function CambiarFotoPerfil({
       "
     >
 
-      {/* 🔥 PREVIEW */}
       <div
         className="
           w-32
@@ -180,7 +179,7 @@ export default function CambiarFotoPerfil({
         )}
       </div>
 
-      {/* 🔥 BOTÓN */}
+      {/* BOTÓN */}
       <label
         className="
           cursor-pointer
@@ -210,7 +209,7 @@ export default function CambiarFotoPerfil({
         />
       </label>
 
-      {/* 🔥 BOTÓN GUARDAR */}
+      {/* BOTÓN GUARDAR */}
       <button
         type="submit"
         disabled={

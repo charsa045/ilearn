@@ -83,8 +83,6 @@ export default async function DashboardPage() {
       <AuthHeader />
 
       <main className="relative min-h-screen px-4 py-10">
-
-        {/* 🔥 Fondo */}
         <div className="absolute inset-0">
 
           <img
@@ -111,7 +109,7 @@ export default async function DashboardPage() {
           "
         >
 
-          {/* 🔥 HEADER USUARIO */}
+          {/* HEADER USUARIO */}
           <section
             className="
               bg-white/90
@@ -127,7 +125,7 @@ export default async function DashboardPage() {
             "
           >
 
-            {/* 🔥 INFO USUARIO */}
+            {/* DATOS USUARIO */}
             <div
               className="
                 flex
@@ -137,7 +135,7 @@ export default async function DashboardPage() {
               "
             >
 
-              {/* 🔥 FOTO */}
+              {/* FOTO */}
               <div
                 className="
                   w-28
@@ -183,7 +181,7 @@ export default async function DashboardPage() {
                 )}
               </div>
 
-              {/* 🔥 DATOS */}
+              {/* DATOS */}
               <div className="space-y-2">
 
                 <h2
@@ -218,13 +216,13 @@ export default async function DashboardPage() {
               </div>
             </div>
 
-            {/* 🔥 CAMBIAR FOTO */}
+            {/* CAMBIAR FOTO */}
             <CambiarFotoPerfil
               imageUrlActual={user?.imageUrl}
             />
           </section>
 
-          {/* 🔥 DOCENTE SIN PERFIL */}
+          {/* DOCENTE SIN PERFIL */}
           {isDocente &&
             !docentePerfil && (
               <section
@@ -269,7 +267,7 @@ export default async function DashboardPage() {
               </section>
             )}
 
-          {/* 🔥 ADMIN VIEW */}
+          {/* VISTA DE ADMINISTRADOR */}
           {isAdmin && (
             <>
               {/* DOCENTES */}
@@ -467,7 +465,7 @@ export default async function DashboardPage() {
             </>
           )}
 
-          {/* 🔥 CLASES */}
+          {/* CLASES */}
           {(isAdmin ||
             docentePerfil) && (
             <section

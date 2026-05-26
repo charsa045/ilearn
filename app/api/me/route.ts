@@ -15,7 +15,6 @@ export async function GET(
 ) {
   try {
 
-    // 🔥 Obtener cookie de sesión
     const cookie = req.headers
       .get("cookie")
       ?.split("; ")
@@ -34,20 +33,17 @@ export async function GET(
       );
     }
 
-    // 🔥 Verificar sesión
     const decoded =
       await adminAuth.verifySessionCookie(
         cookie,
         true
       );
 
-    // 🔥 Obtener usuario
     const usuario =
       await getUsuarioByUid(
         decoded.uid
       );
 
-    // 🔥 Obtener docente (si existe)
     const docente =
       await getDocenteByUid(
         decoded.uid
@@ -56,8 +52,6 @@ export async function GET(
     return NextResponse.json({
       user: {
         uid: decoded.uid,
-
-        // 🔥 DATOS USUARIO
         name:
           usuario?.nombre ||
           decoded.name ||
@@ -80,7 +74,6 @@ export async function GET(
           usuario?.activo ??
           true,
 
-        // 🔥 DATOS DOCENTE
         grado:
           docente?.grado ||
           "",

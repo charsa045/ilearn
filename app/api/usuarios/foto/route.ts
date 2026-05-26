@@ -14,7 +14,6 @@ export async function POST(
 
   try {
 
-    // 🔥 Obtener cookie
     const cookie = req.cookies.get(
       COOKIE
     )?.value;
@@ -31,14 +30,12 @@ export async function POST(
       );
     }
 
-    // 🔥 Usuario autenticado
     const decoded =
       await adminAuth.verifySessionCookie(
         cookie,
         true
       );
 
-    // 🔥 Usuario actual
     const userDoc =
       await adminDb
         .collection("usuarios")
@@ -61,7 +58,6 @@ export async function POST(
     const userData =
       userDoc.data();
 
-    // 🔥 Archivo
     const formData =
       await req.formData();
 
@@ -83,7 +79,6 @@ export async function POST(
       );
     }
 
-    // 🔥 Validar imagen
     if (
       !file.type.startsWith(
         "image/"
@@ -101,14 +96,12 @@ export async function POST(
       );
     }
 
-    // 🔥 Buffer
     const bytes =
       await file.arrayBuffer();
 
     const buffer =
       Buffer.from(bytes);
 
-    // 🔥 Borrar anterior
     if (
       userData?.imagePublicId
     ) {
@@ -128,7 +121,6 @@ export async function POST(
       }
     }
 
-    // 🔥 Subir nueva
     const result =
       await new Promise<any>(
         (
@@ -164,7 +156,6 @@ export async function POST(
         }
       );
 
-    // 🔥 Actualizar usuario
     await adminDb
       .collection("usuarios")
       .doc(decoded.uid)

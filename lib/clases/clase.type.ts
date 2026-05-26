@@ -23,7 +23,6 @@ export interface Clase {
 
   totalAlumnos: number;
 
-  // 🔥 NUEVO
   imageUrl?: string;
 
   imagePublicId?: string;

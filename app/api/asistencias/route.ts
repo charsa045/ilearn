@@ -8,16 +8,13 @@ import {
   getAsistenciaByFecha,
 } from "@/lib/asistencias/asistencia.repository";
 
-// 🔥 FECHA LOCAL MÉXICO
+// FECHA LOCAL MÉXICO
 function getHoy() {
   return new Intl.DateTimeFormat("sv-SE", {
     timeZone: "America/Mexico_City",
   }).format(new Date());
 }
 
-/* =========================================================
-   🔥 POST -> CREAR ASISTENCIA
-========================================================= */
 export async function POST(req: NextRequest) {
 
   try {
@@ -26,7 +23,6 @@ export async function POST(req: NextRequest) {
 
     const { claseId, alumnos } = body;
 
-    // 🔥 VALIDACIONES
     if (!claseId || !alumnos) {
 
       return NextResponse.json(
@@ -39,10 +35,8 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // 🔥 FECHA DEL SERVIDOR
     const hoy = getHoy();
 
-    // 🔥 VALIDAR SI YA EXISTE
     const existente =
       await getAsistenciaByFecha(
         claseId,
@@ -62,7 +56,6 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // 🔥 CREAR ASISTENCIA
     const asistencia =
       await crearAsistencia({
         claseId,
@@ -98,9 +91,6 @@ export async function POST(req: NextRequest) {
   }
 }
 
-/* =========================================================
-   🔥 PUT -> EDITAR ASISTENCIA
-========================================================= */
 export async function PUT(req: NextRequest) {
 
   try {
@@ -113,7 +103,6 @@ export async function PUT(req: NextRequest) {
       fecha,
     } = body;
 
-    // 🔥 VALIDACIONES
     if (
       !claseId ||
       !alumnos ||
@@ -130,7 +119,6 @@ export async function PUT(req: NextRequest) {
       );
     }
 
-    // 🔥 BUSCAR ASISTENCIA
     const existente =
       await getAsistenciaByFecha(
         claseId,
@@ -150,7 +138,6 @@ export async function PUT(req: NextRequest) {
       );
     }
 
-    // 🔥 ACTUALIZAR
     await editarAsistencia({
       asistenciaId: existente.id,
       alumnos,
@@ -179,9 +166,6 @@ export async function PUT(req: NextRequest) {
   }
 }
 
-/* =========================================================
-   🔥 GET
-========================================================= */
 export async function GET(
   req: NextRequest
 ) {
@@ -200,7 +184,6 @@ export async function GET(
     const fecha =
       searchParams.get("fecha");
 
-    // 🔥 VALIDAR claseId
     if (!claseId) {
 
       return NextResponse.json(
@@ -214,9 +197,6 @@ export async function GET(
       );
     }
 
-    /* =========================================
-       🔥 ASISTENCIA DE HOY
-    ========================================= */
     if (hoy === "true") {
 
       const asistencia =
@@ -229,9 +209,6 @@ export async function GET(
       );
     }
 
-    /* =========================================
-       🔥 ASISTENCIA POR FECHA
-    ========================================= */
     if (fecha) {
 
       const asistencia =
@@ -245,9 +222,6 @@ export async function GET(
       );
     }
 
-    /* =========================================
-       🔥 HISTORIAL COMPLETO
-    ========================================= */
     const asistencias =
       await getAsistenciasByClase(
         claseId

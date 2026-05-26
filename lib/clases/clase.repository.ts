@@ -29,7 +29,6 @@ export async function createClase(
     totalAlumnos:
       input.alumnos.length,
 
-    // 🔥 OPCIONAL
     imageUrl:
       input.imageUrl || "",
 
@@ -146,7 +145,6 @@ export async function getClases(): Promise<Clase[]> {
             0
         ),
 
-        // 🔥 NUEVO
         imageUrl: String(
           data.imageUrl ?? ""
         ),
@@ -226,7 +224,6 @@ export async function getClasesByDocente(
             0
         ),
 
-        // 🔥 NUEVO
         imageUrl: String(
           data.imageUrl ?? ""
         ),

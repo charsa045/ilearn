@@ -46,7 +46,6 @@ export async function PUT(
       );
     }
 
-    // 🔥 borrar anterior
     if (oldPublicId) {
 
       await cloudinary.uploader.destroy(
@@ -54,7 +53,6 @@ export async function PUT(
       );
     }
 
-    // 🔥 subir nueva
     const bytes =
       await file.arrayBuffer();
 
@@ -85,7 +83,6 @@ export async function PUT(
         }
       );
 
-    // 🔥 actualizar firestore
     await adminDb
       .collection("clases")
       .doc(id)

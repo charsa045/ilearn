@@ -3,14 +3,12 @@ import { AsistenciaAlumno, CreateAsistenciaInput } from "./asistencia.type";
 
 const COLLECTION = "asistencias";
 
-// 🔥 FECHA LOCAL MÉXICO
 function getHoy() {
   return new Intl.DateTimeFormat("sv-SE", {
     timeZone: "America/Mexico_City",
   }).format(new Date());
 }
 
-// 🔥 OBTENER ASISTENCIA DE HOY
 export async function getAsistenciaHoy(claseId: string) {
 
   if (!claseId) {
@@ -38,7 +36,6 @@ export async function getAsistenciaHoy(claseId: string) {
   };
 }
 
-// 🔥 CREAR ASISTENCIA
 export async function crearAsistencia(
   input: CreateAsistenciaInput
 ) {
@@ -51,7 +48,6 @@ export async function crearAsistencia(
 
   const hoy = getHoy();
 
-  // 🔥 VALIDAR EXISTENCIA
   const existente = await adminDb
     .collection(COLLECTION)
     .where("claseId", "==", claseId)
@@ -65,7 +61,6 @@ export async function crearAsistencia(
     );
   }
 
-  // 🔥 CREAR DOCUMENTO
   const docRef = await adminDb
     .collection(COLLECTION)
     .add({
@@ -83,7 +78,6 @@ export async function crearAsistencia(
   };
 }
 
-// 🔥 OBTENER POR FECHA
 export async function getAsistenciaByFecha(
   claseId: string,
   fecha: string
@@ -133,7 +127,6 @@ export async function getAsistenciaByFecha(
   }
 }
 
-// 🔥 EDITAR
 export async function editarAsistencia({
   asistenciaId,
   alumnos,
@@ -159,7 +152,6 @@ export async function editarAsistencia({
   };
 }
 
-// 🔥 HISTORIAL
 export async function getAsistenciasByClase(
   claseId: string
 ) {

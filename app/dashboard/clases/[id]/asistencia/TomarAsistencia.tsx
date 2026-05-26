@@ -42,7 +42,6 @@ export default function TomarAsistencia({
 
   useEffect(() => {
 
-    // 🔥 No reiniciar si está editando
     if (modoEdicion) return;
 
     const inicial: Record<string, boolean> = {};
@@ -55,9 +54,6 @@ export default function TomarAsistencia({
 
   }, [alumnos, modoEdicion]);
 
-  /**
-   * 🔥 Toggle asistencia
-   */
   const toggleAsistencia = (
     alumnoId: string
   ) => {
@@ -68,14 +64,10 @@ export default function TomarAsistencia({
     }));
   };
 
-  /**
-   * 🔥 Guardar asistencia
-   */
   const guardarAsistencia = async () => {
 
     try {
 
-      // 🔥 Validar fecha en edición
       if (
         modoEdicion &&
         !fechaSeleccionada
@@ -90,7 +82,6 @@ export default function TomarAsistencia({
 
       setLoading(true);
 
-      // 🔥 Formatear alumnos
       const data = alumnos.map(
         (al: any) => ({
           alumnoId: al.id,
@@ -99,7 +90,6 @@ export default function TomarAsistencia({
         })
       );
 
-      // 🔥 Fecha correcta
       const fechaFinal =
         fechaSeleccionada ||
         getFechaMX();
@@ -136,10 +126,8 @@ export default function TomarAsistencia({
 
       alert("✅ Asistencia guardada");
 
-      // 🔥 Refrescar Server Component
       router.refresh();
 
-      // 🔥 Salir edición
       cancelarEdicion();
 
     } catch (error) {
@@ -156,9 +144,6 @@ export default function TomarAsistencia({
     }
   };
 
-  /**
-   * 🔥 Cargar asistencia
-   */
   const cargarAsistencia = async (
     fecha: string
   ) => {
@@ -208,14 +193,10 @@ export default function TomarAsistencia({
     }
   };
 
-  /**
-   * 🔥 Seleccionar fecha
-   */
   const handleSeleccionFecha = async (
     fecha: string
   ) => {
 
-    // 🔥 Limpiar si vacío
     if (!fecha) {
 
       setFechaSeleccionada(null);
@@ -228,17 +209,11 @@ export default function TomarAsistencia({
     await cargarAsistencia(fecha);
   };
 
-  /**
-   * 🔥 Activar edición
-   */
   const activarEdicion = () => {
 
     setModoEdicion(true);
   };
 
-  /**
-   * 🔥 Cancelar edición
-   */
   const cancelarEdicion = () => {
 
     setModoEdicion(false);
@@ -262,7 +237,6 @@ export default function TomarAsistencia({
 
     <div className="border p-4 rounded space-y-4 shadow-md bg-white">
 
-      {/* 🔥 HEADER */}
       <div className="flex justify-between items-center">
 
         <h2 className="font-bold text-lg text-emerald-800">
@@ -271,7 +245,7 @@ export default function TomarAsistencia({
             : "Tomar asistencia"}
         </h2>
 
-        {/* 🔥 BOTÓN EDITAR */}
+        {/* BOTÓN EDITAR */}
         {yaTomada && !modoEdicion && (
 
           <button
@@ -290,7 +264,7 @@ export default function TomarAsistencia({
           </button>
         )}
 
-        {/* 🔥 BOTÓN CANCELAR */}
+        {/* BOTÓN CANCELAR */}
         {modoEdicion && (
 
           <button
@@ -310,7 +284,7 @@ export default function TomarAsistencia({
         )}
       </div>
 
-      {/* 🔥 MENSAJE YA REGISTRADA */}
+      {/* MENSAJE YA REGISTRADA */}
       {yaTomada && !modoEdicion && (
 
         <div className="
@@ -325,7 +299,7 @@ export default function TomarAsistencia({
         </div>
       )}
 
-      {/* 🔥 MENSAJE FALTA TOMAR */}
+      {/* MENSAJE FALTA TOMAR */}
       {!yaTomada && !modoEdicion && (
 
         <div className="
@@ -340,7 +314,7 @@ export default function TomarAsistencia({
         </div>
       )}
 
-      {/* 🔥 SELECTOR FECHAS */}
+      {/* SELECCIÓN DE FECHAS */}
       {modoEdicion && fechas.length > 0 && (
 
         <div>
@@ -391,7 +365,7 @@ export default function TomarAsistencia({
         </div>
       )}
 
-      {/* 🔥 TABLA */}
+      {/* TABLA DE CUMPLIMIENTO */}
       {mostrarTabla && (
 
         <div className="
@@ -440,7 +414,7 @@ export default function TomarAsistencia({
         </div>
       )}
 
-      {/* 🔥 BOTÓN GUARDAR */}
+      {/* GUARDAR */}
       {mostrarTabla && (
 
         <button

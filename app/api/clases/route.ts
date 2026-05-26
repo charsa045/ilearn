@@ -68,9 +68,6 @@ export async function POST(
 
     const docente =
       body.docente;
-
-    // 🔥 NUEVO
-    // La imagen es opcional
     const imageUrl = body.imageUrl
     ? String(body.imageUrl).trim()
     : undefined;
@@ -78,10 +75,6 @@ export async function POST(
   const imagePublicId = body.imagePublicId
     ? String(body.imagePublicId).trim()
     : undefined;
-
-    /**
-     * 🔥 VALIDACIONES
-     */
 
     if (!asignatura) {
 
@@ -144,10 +137,6 @@ export async function POST(
         }
       );
     }
-
-    /**
-     * 🔥 CREAR CLASE
-     */
 
     const clase =
       await createClase({

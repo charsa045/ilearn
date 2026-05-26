@@ -5,10 +5,8 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col">
 
-      {/* 🔷 HEADER */}
       <PublicHeader />
 
-      {/* 🔷 HERO CON IMAGEN */}
       <section
         className="relative py-32 px-6 text-white"
         style={{
@@ -18,7 +16,7 @@ export default function Home() {
           backgroundPosition: "center",
         }}
       >
-        {/* 🔥 OVERLAY */}
+        {/* OVERLAY */}
         <div className="absolute inset-0 bg-gradient-to-r from-blue-900/80 via-blue-700/70 to-indigo-700/80"></div>
 
         <div className="relative max-w-6xl mx-auto">
@@ -40,7 +38,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 🔷 DESCRIPCIÓN */}
+      {/* DESCRIPCIÓN */}
       <section className="py-20 px-6 bg-gray-50">
         <div className="max-w-5xl mx-auto text-center space-y-8">
 
@@ -81,7 +79,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 🔷 ROLES */}
+      {/* ROLES */}
       <section className="py-20 px-6 bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
         <div className="max-w-6xl mx-auto space-y-12">
 
@@ -91,7 +89,7 @@ export default function Home() {
 
           <div className="grid md:grid-cols-2 gap-10">
 
-            {/* 🔹 ADMIN */}
+            {/* ADMINISTRADOR */}
             <div className="bg-white/10 backdrop-blur p-6 rounded-2xl hover:bg-white/20 transition">
               <h3 className="text-2xl font-bold mb-4">
                 Administrador
@@ -107,7 +105,7 @@ export default function Home() {
               </ul>
             </div>
 
-            {/* 🔹 PROFESOR */}
+            {/* DOCENTE */}
             <div className="bg-white/10 backdrop-blur p-6 rounded-2xl hover:bg-white/20 transition">
               <h3 className="text-2xl font-bold mb-4">
                 Profesor
@@ -126,11 +124,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 🔷 FOOTER */}
+      {/* FOOTER */}
       <footer className="mt-auto bg-gray-900 text-white py-12 px-6">
         <div className="max-w-6xl mx-auto space-y-10">
 
-          {/* INFO */}
           <div className="text-center space-y-2">
             <h3 className="text-xl font-bold">
               Programación Web
@@ -164,7 +161,6 @@ export default function Home() {
 
           </div>
 
-          {/* ESCUELA */}
           <div className="text-center text-sm text-gray-400 space-y-1">
             <p>Instituto Tecnológico de Toluca</p>
             <p>Enero - Junio 2026</p>

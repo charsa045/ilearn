@@ -20,11 +20,7 @@ export default async function Page({
   params: Promise<{ id: string }>;
 }) {
   try {
-
-    
-    // 🔥 Obtener ID de clase
-
-    type RegistroAsistencia = {
+  type RegistroAsistencia = {
   alumnoId: string;
   presente: boolean;
 };
@@ -47,49 +43,34 @@ type Asistencia = {
       throw new Error("claseId undefined");
     }
 
-    // 🔥 Validar sesión
     const session = (await cookies()).get("__session");
 
     if (!session) {
       redirect("/");
     }
 
-    // 🔥 Obtener alumnos
     const alumnos = await getAlumnosPorClase(claseId);
 
-    // 🔥 Obtener asistencia de HOY
     const asistenciaHoy = await getAsistenciaHoy(claseId) as Asistencia | null;
 
-    // 🔥 Obtener historial
     const asistencias = await getAsistenciasByClase(claseId);
 
-    // 🔥 Ordenar alumnos
     const alumnosOrdenados = [...alumnos].sort(
       (a: any, b: any) =>
         a.nombre.localeCompare(b.nombre)
     );
 
-    // 🔥 Ordenar asistencias
     const asistenciasOrdenadas = [...asistencias].sort(
       (a: any, b: any) =>
         new Date(a.fecha).getTime() -
         new Date(b.fecha).getTime()
     ) as any[];
 
-    /**
-     * 🔥 VALIDACIÓN REAL
-     *
-     * Solo será true si:
-     * - existe asistencia
-     * - tiene alumnos
-     * - tiene al menos 1 registro
-     */
     const yaTomada =
       !!asistenciaHoy &&
       Array.isArray(asistenciaHoy.alumnos) &&
       asistenciaHoy.alumnos.length > 0;
 
-    // 🔥 Fechas únicas
     const fechas = [
       ...new Set(
         asistenciasOrdenadas.map(
@@ -101,20 +82,16 @@ type Asistencia = {
     return (
       <div className="min-h-screen bg-gradient-to-br from-blue-600 to-emerald-700 flex flex-col">
 
-        {/* 🔷 HEADER */}
         <PublicHeader />
 
         <div className="max-w-6xl mx-auto w-full px-6 py-10 space-y-8">
 
-          {/* 🔥 TOP BAR */}
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-
-            {/* 🔹 TITULOS */}
             <div>
 
               <div className="flex items-center gap-5">
 
-              {/* 🔥 FOTO CLASE */}
+              {/* FOTO CLASE */}
               <div
                 className="
                   w-28
@@ -162,7 +139,7 @@ type Asistencia = {
                 )}
               </div>
 
-              {/* 🔥 DATOS */}
+              {/* DATOS */}
               <div className="space-y-1">
 
                 <h1
@@ -199,7 +176,7 @@ type Asistencia = {
 
             </div>
 
-            {/* 🔙 BOTÓN REGRESAR */}
+            {/* BOTÓN REGRESAR */}
             <a
               href="/dashboard"
               className="
@@ -222,7 +199,7 @@ type Asistencia = {
 
           </div>
 
-          {/* 🔥 CARD PRINCIPAL */}
+          {/* PRINCIPAL */}
           <div className="bg-white/90 rounded-2xl shadow-xl p-6">
 
             <h2 className="text-xl font-bold mb-4 text-gray-700">
@@ -238,14 +215,14 @@ type Asistencia = {
 
           </div>
 
-          {/* 🔥 HISTORIAL */}
+          {/* HISTORIAL */}
           <div className="bg-white/90 rounded-2xl shadow-xl p-6 overflow-auto">
 
             <h2 className="text-xl font-bold mb-4 text-gray-700">
               Historial de asistencia
             </h2>
 
-            {/* 🔥 SI NO HAY HISTORIAL */}
+            {/* MENSAJE SIN HISTORIAL */}
             {fechas.length === 0 ? (
 
               <div className="text-center py-10 text-gray-500">
@@ -256,7 +233,6 @@ type Asistencia = {
 
               <table className="min-w-full text-sm border-collapse">
 
-                {/* 🔹 HEAD */}
                 <thead>
 
                   <tr className="bg-gray-100 text-gray-700">
@@ -280,10 +256,9 @@ type Asistencia = {
 
                 </thead>
 
-                {/* 🔹 BODY */}
                 <tbody>
 
-                  {/* 🔥 SIN ALUMNOS */}
+                  {/* SIN ALUMNOS */}
                   {alumnosOrdenados.length === 0 ? (
 
                     <tr>
@@ -311,7 +286,7 @@ type Asistencia = {
                         "
                       >
 
-                        {/* 🔹 NOMBRE */}
+                        {/* NOMBRE */}
                         <td
                           className="
                             p-3
@@ -326,7 +301,7 @@ type Asistencia = {
                           {alumno.nombre}
                         </td>
 
-                        {/* 🔹 ASISTENCIAS */}
+                        {/* ASISTENCIAS */}
                         {fechas.map((fecha: string) => {
 
                           // 🔥 Buscar asistencia por fecha
@@ -336,7 +311,7 @@ type Asistencia = {
                                 a.fecha === fecha
                             );
 
-                          // 🔥 Buscar registro del alumno
+                          // Buscar registro del alumno
                           const registro =
                             asistencia?.alumnos?.find(
                               (al: any) =>

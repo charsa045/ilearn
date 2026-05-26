@@ -13,7 +13,6 @@ export async function crearAsistencia(formData: FormData) {
     throw new Error("Datos incompletos");
   }
 
-  // 🔥 evitar duplicados por día
   const hoy = new Date();
   hoy.setHours(0, 0, 0, 0);
 
@@ -29,7 +28,7 @@ export async function crearAsistencia(formData: FormData) {
     .get();
 
   if (!existente.empty) {
-    return; // ya existe, no hace nada
+    return;
   }
 
   await adminDb.collection("asistencias").add({
