@@ -57,7 +57,7 @@ export default async function DashboardPage() {
       ? await getAlumnos()
       : [];
 
-  let clasesDocente = [];
+  let clasesDocente: any[] = [];
 
   if (
     isDocente &&
@@ -80,7 +80,7 @@ export default async function DashboardPage() {
 
   return (
     <>
-      <AuthHeader user={user} />
+      <AuthHeader />
 
       <main className="relative min-h-screen px-4 py-10">
 

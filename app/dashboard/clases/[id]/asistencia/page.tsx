@@ -74,7 +74,7 @@ type Asistencia = {
       (a: any, b: any) =>
         new Date(a.fecha).getTime() -
         new Date(b.fecha).getTime()
-    );
+    ) as any[];
 
     /**
      * 🔥 VALIDACIÓN REAL

@@ -102,7 +102,7 @@ export default function Login() {
 
   return (
       <>
-      <PublicHeader isLogin />
+      <PublicHeader/>
 
       <div className="min-h-screen flex items-center justify-center px-4 relative overflow-hidden">
 

@@ -34,7 +34,29 @@ export async function getServerUser(): Promise<Usuario | null> {
         authUser.email ||
         "",
 
-      rol: data?.rol || "docente",
+      rol:
+        data?.rol ||
+        "docente",
+
+      imageUrl:
+        data?.imageUrl ||
+        authUser.photoURL ||
+        "",
+
+      imagePublicId:
+        data?.imagePublicId ||
+        "",
+
+      activo:
+        data?.activo ?? true,
+
+      createdAt:
+        data?.createdAt?.toDate?.() ??
+        new Date(),
+
+      updatedAt:
+        data?.updatedAt?.toDate?.() ??
+        undefined,
     };
   } catch (error) {
     console.error("getServerUser error:", error);
