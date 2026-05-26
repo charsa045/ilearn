@@ -112,7 +112,7 @@ export async function POST(req: NextRequest) {
     const docente = await createDocente({
       uid: finalUid,
       nombre,
-      imageUrl, // ✅ ya no necesitas || ""
+      imageUrl,
       grado,
       titulo,
       especialidad,
