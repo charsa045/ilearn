@@ -6,7 +6,7 @@ import {
 } from "@/lib/docentes/docente.repository";
 
 import { adminAuth } from "@/lib/firebase-admin";
-import { GradoEstudios } from "@/lib/docentes/docente.type"; // 👈 ajusta ruta si es necesario
+import { GradoEstudios } from "@/lib/docentes/docente.type";
 
 // 🔹 GET
 export async function GET() {
@@ -17,10 +17,7 @@ export async function GET() {
       status: 200,
     });
   } catch (error) {
-    console.error(
-      "Error al obtener docentes:",
-      error
-    );
+    console.error("Error al obtener docentes:", error);
 
     return NextResponse.json(
       {
@@ -36,17 +33,15 @@ export async function GET() {
 // 🔹 POST
 export async function POST(req: NextRequest) {
   try {
-    // ✅ TIPADO DEL BODY (CLAVE)
     const body = (await req.json()) as {
       uid?: string;
       email?: string;
       password?: string;
       nombre?: string;
-      imageUrl?: string;
-      grado: GradoEstudios;
-      titulo: string;
-      especialidad: string;
-      institucion: string;
+      grado?: GradoEstudios;
+      titulo?: string;
+      especialidad?: string;
+      institucion?: string;
     };
 
     const {
@@ -54,7 +49,6 @@ export async function POST(req: NextRequest) {
       email,
       password,
       nombre,
-      imageUrl,
       grado,
       titulo,
       especialidad,
@@ -63,8 +57,8 @@ export async function POST(req: NextRequest) {
 
     let finalUid = uid;
 
-    // 🔥 Crear usuario en Firebase si no existe
-    if (!uid) {
+    // 🔥 Si no viene UID, el admin está creando un usuario nuevo en Firebase Auth
+    if (!finalUid) {
       if (!email || !password) {
         return NextResponse.json(
           {
@@ -96,7 +90,6 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // 🔥 Validación básica
     if (!grado || !titulo || !especialidad || !institucion) {
       return NextResponse.json(
         {
@@ -108,11 +101,9 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // 🔥 Crear docente
     const docente = await createDocente({
       uid: finalUid,
       nombre,
-      imageUrl,
       grado,
       titulo,
       especialidad,
@@ -123,16 +114,11 @@ export async function POST(req: NextRequest) {
       status: 201,
     });
   } catch (error: any) {
-    console.error(
-      "Error creando docente:",
-      error
-    );
+    console.error("Error creando docente:", error);
 
     return NextResponse.json(
       {
-        error:
-          error.message ||
-          "Error al crear docente",
+        error: error.message || "Error al crear docente",
       },
       {
         status: 500,

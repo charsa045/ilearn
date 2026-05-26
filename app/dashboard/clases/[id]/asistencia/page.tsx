@@ -20,6 +20,8 @@ export default async function Page({
   params: Promise<{ id: string }>;
 }) {
   try {
+
+    
     // 🔥 Obtener ID de clase
 
     type RegistroAsistencia = {

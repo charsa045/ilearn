@@ -1,10 +1,12 @@
 import { Timestamp } from "firebase-admin/firestore";
+
 import {
   CreateDocenteInput,
   Docente,
+  UpdateDocenteInput,
 } from "./docente.type";
+
 import { adminAuth, adminDb } from "../firebase-admin";
-import { UpdateDocenteInput } from "./docente.type";
 
 const COLLECTION_NAME = "docentes";
 
@@ -18,21 +20,22 @@ function mapDocToDocente(
   }
 
   return {
-  id: doc.id,
-  uid: data.uid,
+    id: doc.id,
+    uid: data.uid ?? doc.id,
 
-  nombre: data.nombre ?? "Sin nombre",
-  imageUrl: data.imageUrl ?? "",
+    nombre: data.nombre ?? "Sin nombre",
+    email: data.email ?? "Sin correo",
 
-  grado: data.grado,
-  titulo: data.titulo,
-  especialidad: data.especialidad,
-  institucion: data.institucion,
+    grado: data.grado ?? "Licenciatura",
+    titulo: data.titulo ?? "",
+    especialidad: data.especialidad ?? "",
+    institucion: data.institucion ?? "",
 
-  activo: data.activo ?? true,
-  createdAt: data.createdAt?.toDate?.() ?? new Date(),
-  updatedAt: data.updatedAt?.toDate?.() ?? new Date(),
-};
+    activo: data.activo ?? true,
+
+    createdAt: data.createdAt?.toDate?.() ?? new Date(),
+    updatedAt: data.updatedAt?.toDate?.() ?? new Date(),
+  };
 }
 
 export async function createDocente(
@@ -53,24 +56,27 @@ export async function createDocente(
   const authUser = await adminAuth.getUser(input.uid);
 
   const docenteData = {
-  uid: input.uid,
+    uid: input.uid,
 
-  nombre:
-    authUser.displayName ||
-    input.nombre ||
-    "Sin nombre",
+    nombre:
+      authUser.displayName ||
+      input.nombre ||
+      "Sin nombre",
 
-  imageUrl: input.imageUrl || "",
+    email:
+      authUser.email ||
+      "Sin correo",
 
-  grado: input.grado,
-  titulo: input.titulo,
-  especialidad: input.especialidad,
-  institucion: input.institucion,
+    grado: input.grado,
+    titulo: input.titulo,
+    especialidad: input.especialidad,
+    institucion: input.institucion,
 
-  activo: true,
-  createdAt: now,
-  updatedAt: now,
-};
+    activo: true,
+
+    createdAt: now,
+    updatedAt: now,
+  };
 
   await docRef.set(docenteData);
 
@@ -83,7 +89,9 @@ export async function createDocente(
 }
 
 export async function getDocentes(): Promise<Docente[]> {
-  const snapshot = await adminDb.collection(COLLECTION_NAME).get();
+  const snapshot = await adminDb
+    .collection(COLLECTION_NAME)
+    .get();
 
   return snapshot.docs.map(mapDocToDocente);
 }
@@ -106,19 +114,27 @@ export async function getDocenteByUid(
 export async function updateDocente(
   uid: string,
   data: UpdateDocenteInput
-) {
-  const docRef = adminDb
-    .collection(COLLECTION_NAME)
-    .doc(uid);
+): Promise<void> {
+  if (!uid) {
+    throw new Error("uid requerido");
+  }
 
-  await docRef.update({
-    ...data,
-    updatedAt: Timestamp.now(),
-  });
+  await adminDb
+    .collection(COLLECTION_NAME)
+    .doc(uid)
+    .update({
+      ...data,
+      updatedAt: Timestamp.now(),
+    });
 }
 
+export async function desactivarDocente(
+  uid: string
+): Promise<void> {
+  if (!uid) {
+    throw new Error("uid requerido");
+  }
 
-export async function desactivarDocente(uid: string) {
   await adminDb
     .collection(COLLECTION_NAME)
     .doc(uid)

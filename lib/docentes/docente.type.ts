@@ -6,25 +6,25 @@ export type GradoEstudios =
 export interface Docente {
   id: string;
   uid: string;
+
   nombre: string;
   email: string;
-
-  imageUrl?: string; // ✅ AGREGADO
 
   grado: GradoEstudios;
   titulo: string;
   especialidad: string;
   institucion: string;
+
   activo: boolean;
+
   createdAt: Date;
   updatedAt: Date;
 }
 
 export interface CreateDocenteInput {
   uid: string;
-  nombre?: string;
 
-  imageUrl?: string;
+  nombre?: string;
 
   grado: GradoEstudios;
   titulo: string;
@@ -35,11 +35,10 @@ export interface CreateDocenteInput {
 export interface UpdateDocenteInput {
   nombre?: string;
 
-  imageUrl?: string; // ✅ AGREGADO
-
   grado?: GradoEstudios;
   titulo?: string;
   especialidad?: string;
   institucion?: string;
+
   activo?: boolean;
 }
