@@ -22,8 +22,6 @@ function mapDocToDocente(
   uid: data.uid,
 
   nombre: data.nombre ?? "Sin nombre",
-  email: data.email ?? "Sin correo",
-
   imageUrl: data.imageUrl ?? "",
 
   grado: data.grado,
