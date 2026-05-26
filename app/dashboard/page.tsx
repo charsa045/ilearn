@@ -578,7 +578,7 @@ export default async function DashboardPage() {
                                 text-xs
                               "
                             >
-                              Tomar asistencia
+                              Ir a la asignatura
                             </Link>
                           </td>
                         )}
