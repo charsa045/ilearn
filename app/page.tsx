@@ -29,10 +29,9 @@ export default function Home() {
             </h1>
 
             <p className="text-lg text-blue-100">
-              Plataforma web enfocada en optimizar el control escolar,
-              permitiendo administrar alumnos, docentes, clases,
-              asistencias y calificaciones en un solo sistema
-              centralizado.
+              Plataforma enfocada en optimizar el control escolar,
+              permitiendo administrar alumnos, docentes, clases y
+              asistencias en un solo sistema.
             </p>
           </div>
         </div>
