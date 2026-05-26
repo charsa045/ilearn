@@ -158,11 +158,11 @@ type Asistencia = {
                 </p>
 
                 <p className="text-sm text-white/90">
-                  👨‍🏫 {clase.docente.nombre}
+                  {clase.docente.nombre}
                 </p>
 
                 <p className="text-sm text-white/90">
-                  👥 {clase.totalAlumnos} alumnos
+                  {clase.totalAlumnos} alumnos
                 </p>
 
               </div>
@@ -304,7 +304,7 @@ type Asistencia = {
                         {/* ASISTENCIAS */}
                         {fechas.map((fecha: string) => {
 
-                          // 🔥 Buscar asistencia por fecha
+                          // Buscar asistencia por fecha
                           const asistencia =
                             asistenciasOrdenadas.find(
                               (a: any) =>

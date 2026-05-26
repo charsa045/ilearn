@@ -295,7 +295,7 @@ export default function TomarAsistencia({
           font-semibold
           text-center
         ">
-          ✅ La asistencia de hoy ya fue registrada.
+          La asistencia de hoy ya fue registrada.
         </div>
       )}
 
@@ -310,7 +310,7 @@ export default function TomarAsistencia({
           font-semibold
           text-center
         ">
-          ⚠️ Falta tomar asistencia hoy
+          Falta tomar asistencia hoy
         </div>
       )}
 
