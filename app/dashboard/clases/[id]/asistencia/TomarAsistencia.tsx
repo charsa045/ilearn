@@ -124,7 +124,7 @@ export default function TomarAsistencia({
         return;
       }
 
-      alert("✅ Asistencia guardada");
+      alert("Asistencia guardada");
 
       router.refresh();
 
@@ -246,7 +246,7 @@ export default function TomarAsistencia({
         </h2>
 
         {/* BOTÓN EDITAR */}
-        {yaTomada && !modoEdicion && (
+        {!modoEdicion && (
 
           <button
             onClick={activarEdicion}
