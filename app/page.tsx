@@ -58,7 +58,7 @@ export default function Home() {
 
             <div className="p-6 bg-white rounded-xl shadow hover:shadow-lg text-gray-700 hover:text-blue-600 transition">
               <h3 className="font-bold text-lg mb-2">
-                📚 Gestión de clases
+                Gestión de clases
               </h3>
               <p className="text-sm">
                 Organización de materias por carrera con asignación de
@@ -68,7 +68,7 @@ export default function Home() {
 
             <div className="p-6 bg-white rounded-xl shadow hover:shadow-lg text-gray-700 hover:text-blue-600 transition">
               <h3 className="font-bold text-lg mb-2">
-                ✅ Control de asistencia
+                Control de asistencia
               </h3>
               <p className="text-sm">
                 Registro dinámico de asistencia con historial por fecha.
